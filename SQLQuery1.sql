@@ -120,7 +120,7 @@ CREATE TABLE Product(
 
 SET IDENTITY_INSERT [dbo].[Product] ON
 INSERT [dbo].[Product]([productID],[name],[description],[img],[categoryID],[brandID],[quantity],[price],[Gb],[Color])
-VALUES(1,'Điện thoại di động Apple iPhone 14 Pro Max - Chính hãng VN/A',
+VALUES(2,N'Điện thoại di động Apple iPhone 14 Pro Max - Chính hãng VN/A',
 N'iPhone 14 Pro Max VN/A là dòng sản phẩm cao cấp nhất nằm trong thế hệ iPhone mới vừa được ra mắt cùng với nhiều nâng cấp về ngoại hình và tính năng',
 '14promax.png','1','1','20','31.49','128','Space Black')
 SET IDENTITY_INSERT [dbo].[Product] OFF
