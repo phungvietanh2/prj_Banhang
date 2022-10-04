@@ -14,12 +14,18 @@ public class Order {
     private int accID;
     private double totalmoney;
 
+
     public Order(int id, String date, int accID, double totalmoney) {
         this.id = id;
         this.date = date;
         this.accID = accID;
         this.totalmoney = totalmoney;
+        
     }
+
+    
+
+    
 
     public Order() {
     }
@@ -55,5 +61,7 @@ public class Order {
     public void setTotalmoney(double totalmoney) {
         this.totalmoney = totalmoney;
     }
+
+ 
     
 }

@@ -87,3 +87,10 @@ function fadeOut(){
 }
 
 window.onload = fadeOut;
+
+
+function buy(id) {
+            var m = document.f.num.value;
+            document.f.action = "buy?id="+id+"&num="+m;
+            document.f.submit();
+        }

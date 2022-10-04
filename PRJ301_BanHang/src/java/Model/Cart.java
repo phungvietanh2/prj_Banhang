@@ -37,7 +37,7 @@ public class Cart {
         return null;
     }
 
-    public void addItem(Item t) {
+     public void addItem(Item t) {
         if (getItemById(t.getProduct().getProductID()) != null) {
             Item m = getItemById(t.getProduct().getProductID());
             m.setQuantity(m.getQuantity() + t.getQuantity());
@@ -45,6 +45,7 @@ public class Cart {
             items.add(t);
         }
     }
+
 
     public void removeItem(int id) {
         if (getItemById(id) != null) {
@@ -55,9 +56,13 @@ public class Cart {
     public double getTotalMoney() {
         double total = 0;
         for (Item i : items) {
-            total += (i.getQuantity() * (i.getPrice()*(100-i.getSale())/2400));
+            total += (i.getQuantity() * (i.getPrice()));
         }
         return total;
+    }
+     public String getstatus() {
+        String status = "In Progress";
+        return status;
     }
 
     private Product getProductById(int id, List<Product> list) {
@@ -79,11 +84,17 @@ public class Cart {
                     int id = Integer.parseInt(n[0]);
                     int quantity = Integer.parseInt(n[1]);
                     Product p = getProductById(id, list);
-                    Item t = new Item(p, quantity, p.getPrice(),p.getSale());
+                    Item t = new Item(p, quantity, p.getPrice());
                     addItem(t);
                 }
             }
         } catch (NumberFormatException e) {
         }
     }
+
+    @Override
+    public String toString() {
+        return "Cart{" + "items=" + items + '}';
+    }
+    
 }

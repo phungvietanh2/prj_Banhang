@@ -29,6 +29,7 @@
     </head>
 
     <body>
+
         <jsp:include page="../use/Menu.jsp"></jsp:include>
 
             <form action="" id="search-form">
@@ -86,20 +87,106 @@
 
             <!-- home section ends -->
 
-            <!-- dishes section starts  -->
+            <!-- dishes section starts  -->   
+            <a href="Cart" class="fas fa-shopping-cart">${requestScope.size}</a>      
+        <form name="f" method="post">
+            <input type="hidden" type="number"  name="num" value="1" >
+            <section class="dishes" id="dienthoai">
+                <h1 class="heading"> ĐIỆN THOẠI </h1>
+                <div class="box-container">
+                    <c:forEach items="${requestScope.productdt}"  var="c" >
 
-            <section class="dishes" id="dishes">
+                        <c:set var="id" value="${c.productID}" />  
+                        <div class="box">
+                            <div class="image">            
+                                <a href="Information?productID${c.productID} class="fas fa-heart">
+
+                                    <img src="img/iphone/${c.img}" alt="">
+                                </a>
+                            </div>
+                            <div class="content">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <h3>${c.name}</h3>
+                                <input type="button" class="btn" onclick="buy('${id}')" value="add to cart">
+                                <span class="price">$${c.price}</span>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </section>
+        </form>
+
+
+        <!-- dishes section ends -->
+
+        <!-- about section starts  -->
+
+        <section class="about" id="tablet">
+
+            <section class="dishes" >
 
 
 
                 <h1 class="heading"> Iphone </h1>
 
                 <div class="box-container">
+                    <c:forEach items="${requestScope.product}"  var="c" >
+                        <div class="box">
+                            <div class="image">            
+                                <a href="Information?productID${c.productID} class="fas fa-heart">
+
+                                    <img src="img/iphone/${c.img}" alt="">
+                                </a>
+                            </div>
+                            <div class="content">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <h3>${c.name}</h3>
+                                <a href="#" class="btn">add to cart</a>
+                                <span class="price">$${c.price}</span>
+                            </div>
+                        </div>
+                    </c:forEach>
+
+                </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+        <!-- about section ends -->
+
+        <!-- menu section starts  -->
+
+
+
+        <section class="dishes" id="laptop">
+
+
+
+            <h1 class="heading"> Iphone </h1>
+
+            <div class="box-container">
                 <c:forEach items="${requestScope.product}"  var="c" >
                     <div class="box">
-                        <div class="image">
-                            <a href="#"><img src="img/iphone/${c.img}" alt=""></a>
-                            <a href="#" class="fas fa-heart"></a>
+                        <div class="image">            
+                            <a href="Information?productID${c.productID} class="fas fa-heart">
+
+                                <img src="img/iphone/${c.img}" alt="">
+                            </a>
                         </div>
                         <div class="content">
                             <div class="stars">
@@ -120,241 +207,7 @@
 
         </div>
 
-    </section>
 
-
-    <!-- dishes section ends -->
-
-    <!-- about section starts  -->
-
-    <section class="about" id="about">
-
-        <h3 class="sub-heading"> about us </h3>
-        <h1 class="heading"> why choose us? </h1>
-
-        <div class="row">
-
-            <div class="image">
-                <img src="images/about-img.png" alt="">
-            </div>
-
-            <div class="content">
-                <h3>best food in the country</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, sequi corrupti corporis quaerat voluptatem ipsam neque labore modi autem, saepe numquam quod reprehenderit rem? Tempora aut soluta odio corporis nihil!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, nemo. Sit porro illo eos cumque deleniti iste alias, eum natus.</p>
-                <div class="icons-container">
-                    <div class="icons">
-                        <i class="fas fa-shipping-fast"></i>
-                        <span>free delivery</span>
-                    </div>
-                    <div class="icons">
-                        <i class="fas fa-dollar-sign"></i>
-                        <span>easy payments</span>
-                    </div>
-                    <div class="icons">
-                        <i class="fas fa-headset"></i>
-                        <span>24/7 service</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">learn more</a>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- about section ends -->
-
-    <!-- menu section starts  -->
-
-    <section class="menu" id="menu">
-
-        <h3 class="sub-heading"> our menu </h3>
-        <h1 class="heading"> today's speciality </h1>
-
-        <div class="box-container">
-
-            <div class="box">
-                <div class="image">
-                    <img src="images/menu-1.jpg" alt="">
-                    <a href="#" class="fas fa-heart"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>delicious food</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
-                    <a href="#" class="btn">add to cart</a>
-                    <span class="price">$12.99</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="image">
-                    <img src="../img/slide/1.jpg" alt="">
-                    <a href="#" class="fas fa-heart"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>delicious food</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
-                    <a href="#" class="btn">add to cart</a>
-                    <span class="price">$12.99</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="image">
-                    <img src="images/menu-3.jpg" alt="">
-                    <a href="#" class="fas fa-heart"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>delicious food</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
-                    <a href="#" class="btn">add to cart</a>
-                    <span class="price">$12.99</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="image">
-                    <img src="images/menu-4.jpg" alt="">
-                    <a href="#" class="fas fa-heart"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>delicious food</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
-                    <a href="#" class="btn">add to cart</a>
-                    <span class="price">$12.99</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="image">
-                    <img src="images/menu-5.jpg" alt="">
-                    <a href="#" class="fas fa-heart"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>delicious food</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
-                    <a href="#" class="btn">add to cart</a>
-                    <span class="price">$12.99</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="image">
-                    <img src="images/menu-6.jpg" alt="">
-                    <a href="#" class="fas fa-heart"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>delicious food</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
-                    <a href="#" class="btn">add to cart</a>
-                    <span class="price">$12.99</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="image">
-                    <img src="images/menu-7.jpg" alt="">
-                    <a href="#" class="fas fa-heart"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>delicious food</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
-                    <a href="#" class="btn">add to cart</a>
-                    <span class="price">$12.99</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="image">
-                    <img src="images/menu-8.jpg" alt="">
-                    <a href="#" class="fas fa-heart"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>delicious food</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
-                    <a href="#" class="btn">add to cart</a>
-                    <span class="price">$12.99</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="image">
-                    <img src="images/menu-9.jpg" alt="">
-                    <a href="#" class="fas fa-heart"></a>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <h3>delicious food</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
-                    <a href="#" class="btn">add to cart</a>
-                    <span class="price">$12.99</span>
-                </div>
-            </div>
-
-        </div>
 
     </section>
 
@@ -362,21 +215,24 @@
 
     <!-- review section starts  -->
 
-    <section class="review" id="review">
+    <section class="review" id="dongho">
 
-        <h3 class="sub-heading"> customer's review </h3>
-        <h1 class="heading"> what they say </h1>
+        <section class="dishes" >
 
-        <div class="swiper-container review-slider">
 
-            <div class="swiper-wrapper">
 
-                <div class="swiper-slide slide">
-                    <i class="fas fa-quote-right"></i>
-                    <div class="user">
-                        <img src="images/pic-1.png" alt="">
-                        <div class="user-info">
-                            <h3>john deo</h3>
+            <h1 class="heading"> Iphone </h1>
+
+            <div class="box-container">
+                <c:forEach items="${requestScope.product}"  var="c" >
+                    <div class="box">
+                        <div class="image">            
+                            <a href="Information?productID${c.productID} class="fas fa-heart">
+
+                                <img src="img/iphone/${c.img}" alt="">
+                            </a>
+                        </div>
+                        <div class="content">
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -384,126 +240,20 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                             </div>
+                            <h3>${c.name}</h3>
+                            <a href="#" class="btn">add to cart</a>
+                            <span class="price">$${c.price}</span>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat consequuntur repellendus aperiam deserunt nihil, corporis fugit voluptatibus voluptate totam neque illo placeat eius quis laborum aspernatur quibusdam. Ipsum, magni.</p>
-                </div>
-
-                <div class="swiper-slide slide">
-                    <i class="fas fa-quote-right"></i>
-                    <div class="user">
-                        <img src="images/pic-2.png" alt="">
-                        <div class="user-info">
-                            <h3>john deo</h3>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat consequuntur repellendus aperiam deserunt nihil, corporis fugit voluptatibus voluptate totam neque illo placeat eius quis laborum aspernatur quibusdam. Ipsum, magni.</p>
-                </div>
-
-                <div class="swiper-slide slide">
-                    <i class="fas fa-quote-right"></i>
-                    <div class="user">
-                        <img src="images/pic-3.png" alt="">
-                        <div class="user-info">
-                            <h3>john deo</h3>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat consequuntur repellendus aperiam deserunt nihil, corporis fugit voluptatibus voluptate totam neque illo placeat eius quis laborum aspernatur quibusdam. Ipsum, magni.</p>
-                </div>
-
-                <div class="swiper-slide slide">
-                    <i class="fas fa-quote-right"></i>
-                    <div class="user">
-                        <img src="images/pic-4.png" alt="">
-                        <div class="user-info">
-                            <h3>john deo</h3>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat consequuntur repellendus aperiam deserunt nihil, corporis fugit voluptatibus voluptate totam neque illo placeat eius quis laborum aspernatur quibusdam. Ipsum, magni.</p>
-                </div>
+                </c:forEach>
 
             </div>
 
-        </div>
-
-    </section>
-
-    <!-- review section ends -->
-
-    <!-- order section starts  -->
-
-    <section class="order" id="order">
-
-        <h3 class="sub-heading"> order now </h3>
-        <h1 class="heading"> free and fast </h1>
-
-        <form action="">
-
-            <div class="inputBox">
-                <div class="input">
-                    <span>your name</span>
-                    <input type="text" placeholder="enter your name">
-                </div>
-                <div class="input">
-                    <span>your number</span>
-                    <input type="number" placeholder="enter your number">
-                </div>
-            </div>
-            <div class="inputBox">
-                <div class="input">
-                    <span>your order</span>
-                    <input type="text" placeholder="enter food name">
-                </div>
-                <div class="input">
-                    <span>additional food</span>
-                    <input type="test" placeholder="extra with food">
-                </div>
-            </div>
-            <div class="inputBox">
-                <div class="input">
-                    <span>how musch</span>
-                    <input type="number" placeholder="how many orders">
-                </div>
-                <div class="input">
-                    <span>date and time</span>
-                    <input type="datetime-local">
-                </div>
-            </div>
-            <div class="inputBox">
-                <div class="input">
-                    <span>your address</span>
-                    <textarea name="" placeholder="enter your address" id="" cols="30" rows="10"></textarea>
-                </div>
-                <div class="input">
-                    <span>your message</span>
-                    <textarea name="" placeholder="enter your message" id="" cols="30" rows="10"></textarea>
-                </div>
             </div>
 
-            <input type="submit" value="order now" class="btn">
 
-        </form>
+
+        </section>
 
     </section>
 
@@ -511,7 +261,7 @@
 
     <!-- footer section starts  -->
 
-   <jsp:include page="../use/Footer.jsp"></jsp:include>
+    <jsp:include page="../use/Footer.jsp"></jsp:include>
 
 
     <!-- footer section ends -->
@@ -522,6 +272,13 @@
 
     <!-- custom js file link  -->
     <script src="js/Home.js" type="text/javascript"></script>
+    <script>
+                                    function buy(id) {
+                                        var m = document.f.num.value;
+                                        document.f.action = "buy?id=" + id + "&num=" + m;
+                                        document.f.submit();
+                                    }
 
+    </script>
 </body>
 </html>

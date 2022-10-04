@@ -5,12 +5,18 @@
 package UseController;
 
 import DBcontext.ProductDBcontext;
+import Model.Cart;
+import Model.Item;
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import static java.util.Collections.list;
+import java.util.List;
 
 /**
  *
@@ -21,27 +27,38 @@ public class ProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProductController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProductController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        List<Product> list = prodb.list();
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr != null) {
+            for (Cookie o : arr) {
+                if (o.getName().equals("cart")) {
+                    txt += o.getValue();
+                }
+            }
         }
+
+        Cart cart = new Cart(txt, list);
+        List<Item> lists = cart.getItems();
+        int n;
+        if (lists != null) {
+            n = lists.size();
+        } else {
+            n = 0;
+        }
+        request.setAttribute("size", n);
+        request.setAttribute("product", list);
+        request.setAttribute("productdt", prodb.listProductsdienthoai());
+        request.getRequestDispatcher("use/Home.jsp").forward(request, response);
     }
     ProductDBcontext prodb = new ProductDBcontext();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("product", prodb.list());
-        request.getRequestDispatcher("use/Home.jsp").forward(request, response);
-        
+        processRequest(request, response);
+
     }
 
     /**

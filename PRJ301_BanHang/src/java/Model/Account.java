@@ -90,6 +90,11 @@ public class Account {
     public void setIsCustomer(boolean isCustomer) {
         this.isCustomer = isCustomer;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" + "accID=" + accID + ", email=" + email + ", phone=" + phone + ", fullname=" + fullname + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin + ", isCustomer=" + isCustomer + '}';
+    }
     
     
 }

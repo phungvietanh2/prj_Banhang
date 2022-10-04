@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/homeadmin.css" rel="stylesheet" type="text/css"/>
+    <link href="css/homeadmin.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <!-- =============== Navigation ================ -->
@@ -165,67 +167,21 @@
                             <tr>
                                 <td>Name</td>
                                 <td>Price</td>
-                                <td>Payment</td>
+                                <td>Quantity</td>
                                 <td>Status</td>
                             </tr>
                         </thead>
 
                         <tbody>
+                            <c:forEach items="${requestScope.a}" var="c">
                             <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
+                                <td>${c.product.name}</td>
+                                <td>$ <fmt:formatNumber pattern="##.##" value="${c.price}" /></td>
+                                <td>${c.quantity}</td>
+                                <td><span class="status delivered">${c.status}</span></td>
                             </tr>
+                        </c:forEach>
 
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

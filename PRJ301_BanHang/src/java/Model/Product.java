@@ -9,8 +9,8 @@ package Model;
  * @author 84923
  */
 public class Product {
-    private int productID;
-    private String name,description,img,gb ,color;
+   private int productID;
+    private String name,description,img;
     private int categoryID,brandID,quantity;
     private float price;
 
@@ -22,8 +22,6 @@ public class Product {
         this.name = name;
         this.description = description;
         this.img = img;
-        this.gb = gb;
-        this.color = color;
         this.categoryID = categoryID;
         this.brandID = brandID;
         this.quantity = quantity;
@@ -62,21 +60,6 @@ public class Product {
         this.img = img;
     }
 
-    public String getGb() {
-        return gb;
-    }
-
-    public void setGb(String gb) {
-        this.gb = gb;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     public int getCategoryID() {
         return categoryID;
@@ -112,8 +95,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "productID=" + productID + ", name=" + name + ", description=" + description + ", img=" + img + ", gb=" + gb + ", color=" + color + ", categoryID=" + categoryID + ", brandID=" + brandID + ", quantity=" + quantity + ", price=" + price + '}';
+        return "Product{" + "productID=" + productID + ", name=" + name + ", description=" + description + ", img=" + img + ", categoryID=" + categoryID + ", brandID=" + brandID + ", quantity=" + quantity + ", price=" + price + '}';
     }
-
+    
+ 
     
 }

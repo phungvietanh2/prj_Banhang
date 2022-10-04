@@ -8,6 +8,46 @@
         <servlet-name>InforProductController</servlet-name>
         <servlet-class>UseController.InforProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CarController</servlet-name>
+        <servlet-class>UseController.CarController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>xemhang</servlet-name>
+        <servlet-class>UseController.xemhang</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuyproductController</servlet-name>
+        <servlet-class>UseController.BuyproductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Process</servlet-name>
+        <servlet-class>UseController.ProcessController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>Acount.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>Acount.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>UseController.HomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>AdminController.AdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutController</servlet-name>
+        <servlet-class>UseController.CheckoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StatusController</servlet-name>
+        <servlet-class>AdminController.StatusController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/Product</url-pattern>
@@ -15,6 +55,46 @@
     <servlet-mapping>
         <servlet-name>InforProductController</servlet-name>
         <url-pattern>/Information</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CarController</servlet-name>
+        <url-pattern>/Cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xemhang</servlet-name>
+        <url-pattern>/xemhang</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyproductController</servlet-name>
+        <url-pattern>/buy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Process</servlet-name>
+        <url-pattern>/process</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/Admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutController</servlet-name>
+        <url-pattern>/Checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StatusController</servlet-name>
+        <url-pattern>/Status</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -12,27 +12,17 @@ public class Item {
     private Product product;
     private int quantity;
     private double price;
-    private double sale;
 
     public Item() {
     }
 
-    public Item(Product product, int quantity, double price, double sale) {
+    public Item(Product product, int quantity, double price) {
         this.product = product;
         this.quantity = quantity;
         this.price = price;
-        this.sale = sale;
     }
 
-    public double getSale() {
-        return sale;
-    }
-
-    public void setSale(double sale) {
-        this.sale = sale;
-    }
-
-   
+    
 
     public Product getProduct() {
         return product;
@@ -56,6 +46,11 @@ public class Item {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" + "product=" + product + ", quantity=" + quantity + ", price=" + price + '}';
     }
     
     
