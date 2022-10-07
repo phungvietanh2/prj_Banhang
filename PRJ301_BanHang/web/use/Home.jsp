@@ -88,15 +88,43 @@
             <!-- home section ends -->
 
             <!-- dishes section starts  -->   
-            <a href="Cart" class="fas fa-shopping-cart">${requestScope.size}</a>      
-        <form name="f" method="post">
-            <input type="hidden" type="number"  name="num" value="1" >
-            <section class="dishes" id="dienthoai">
-                <h1 class="heading"> ĐIỆN THOẠI </h1>
-                <div class="box-container">
+            <form name="f" method="post">
+                <input type="hidden" type="number"  name="num" value="1" >
+                <section class="dishes" id="dienthoai">
+                    <h1 class="heading"> ĐIỆN THOẠI </h1>
+                    <div class="box-container">
                     <c:forEach items="${requestScope.productdt}"  var="c" >
-
                         <c:set var="id" value="${c.productID}" />  
+                        <div class="box">
+                            <div class="image">            
+                                <a href="Information?productID${c.productID} class="fas fa-heart">
+                                    <img src="img/iphone/${c.img}" alt="">
+                                </a>
+                            </div>
+                            <div class="content">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <h3>${c.name}</h3>
+                                <input type="button" class="btn" onclick="buy('${id}')" value="add to cart">
+                                <span class="price">$${c.price}</span>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </section>
+
+
+
+            <section class="dishes" id="laptop">
+                <h1 class="heading"> TABLE </h1>
+
+                <div class="box-container">
+                    <c:forEach items="${requestScope.product}"  var="c" >
                         <div class="box">
                             <div class="image">            
                                 <a href="Information?productID${c.productID} class="fas fa-heart">
@@ -118,167 +146,62 @@
                             </div>
                         </div>
                     </c:forEach>
+
                 </div>
+            </section>
+            <section class="review" id="dongho">
+                <section class="dishes" >
+                    <h1 class="heading"> LAPTOP </h1>
+                    <div class="box-container">
+                        <c:forEach items="${requestScope.product}"  var="c" >
+                            <div class="box">
+                                <div class="image">            
+                                    <a href="Information?productID${c.productID} class="fas fa-heart">
+
+                                        <img src="img/iphone/${c.img}" alt="">
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <h3>${c.name}</h3>
+                                    <input type="button" class="btn" onclick="buy('${id}')" value="add to cart">
+                                    <span class="price">$${c.price}</span>
+                                </div>
+                            </div>
+                        </c:forEach>
+
+                    </div>
+                </section>
             </section>
         </form>
+        <!-- order section ends -->
+
+        <!-- footer section starts  -->
+
+        <jsp:include page="../use/Footer.jsp"></jsp:include>
 
 
-        <!-- dishes section ends -->
+        <!-- footer section ends -->
 
-        <!-- about section starts  -->
+        <!-- loader part  -->
 
-        <section class="about" id="tablet">
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-            <section class="dishes" >
-
-
-
-                <h1 class="heading"> Iphone </h1>
-
-                <div class="box-container">
-                    <c:forEach items="${requestScope.product}"  var="c" >
-                        <div class="box">
-                            <div class="image">            
-                                <a href="Information?productID${c.productID} class="fas fa-heart">
-
-                                    <img src="img/iphone/${c.img}" alt="">
-                                </a>
-                            </div>
-                            <div class="content">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                                <h3>${c.name}</h3>
-                                <a href="#" class="btn">add to cart</a>
-                                <span class="price">$${c.price}</span>
-                            </div>
-                        </div>
-                    </c:forEach>
-
-                </div>
-
-                </div>
-
-            </section>
-
-        </section>
-
-        <!-- about section ends -->
-
-        <!-- menu section starts  -->
-
-
-
-        <section class="dishes" id="laptop">
-
-
-
-            <h1 class="heading"> Iphone </h1>
-
-            <div class="box-container">
-                <c:forEach items="${requestScope.product}"  var="c" >
-                    <div class="box">
-                        <div class="image">            
-                            <a href="Information?productID${c.productID} class="fas fa-heart">
-
-                                <img src="img/iphone/${c.img}" alt="">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <h3>${c.name}</h3>
-                            <a href="#" class="btn">add to cart</a>
-                            <span class="price">$${c.price}</span>
-                        </div>
-                    </div>
-                </c:forEach>
-
-            </div>
-
-        </div>
-
-
-
-    </section>
-
-    <!-- menu section ends -->
-
-    <!-- review section starts  -->
-
-    <section class="review" id="dongho">
-
-        <section class="dishes" >
-
-
-
-            <h1 class="heading"> Iphone </h1>
-
-            <div class="box-container">
-                <c:forEach items="${requestScope.product}"  var="c" >
-                    <div class="box">
-                        <div class="image">            
-                            <a href="Information?productID${c.productID} class="fas fa-heart">
-
-                                <img src="img/iphone/${c.img}" alt="">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <h3>${c.name}</h3>
-                            <a href="#" class="btn">add to cart</a>
-                            <span class="price">$${c.price}</span>
-                        </div>
-                    </div>
-                </c:forEach>
-
-            </div>
-
-            </div>
-
-
-
-        </section>
-
-    </section>
-
-    <!-- order section ends -->
-
-    <!-- footer section starts  -->
-
-    <jsp:include page="../use/Footer.jsp"></jsp:include>
-
-
-    <!-- footer section ends -->
-
-    <!-- loader part  -->
-
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    <!-- custom js file link  -->
-    <script src="js/Home.js" type="text/javascript"></script>
-    <script>
+        <!-- custom js file link  -->
+        <script src="js/Home.js" type="text/javascript"></script>
+        <script>
                                     function buy(id) {
                                         var m = document.f.num.value;
                                         document.f.action = "buy?id=" + id + "&num=" + m;
                                         document.f.submit();
                                     }
 
-    </script>
-</body>
+        </script>
+    </body>
 </html>

@@ -24,8 +24,8 @@
             <a href="#" class="logo"><i class="fas fa-utensils"></i>resto.</a>
 
             <nav class="navbar">
-                <a  href="Home">HOME</a>
-                <a href="#dienthoai">ĐIỆN THOẠI</a>
+                <a href="Home">HOME</a>
+                <a href="DienThoai">ĐIỆN THOẠI</a>
                 <a href="#tablet">TABLET</a>
                 <a href="#laptop">LAPTOP</a>
                 <a href="#dongho">ĐỒNG HỒ</a>

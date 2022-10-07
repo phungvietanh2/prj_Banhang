@@ -26,9 +26,7 @@ public class OrderDBcontext extends DBcontext<Order> {
     @Override
     public ArrayList<Order> list() {
         return null;
-        }
-
-  
+    }
 
     public void addOrder(Account a, Cart c) {
         LocalDate curDate = LocalDate.now();
@@ -71,12 +69,32 @@ public class OrderDBcontext extends DBcontext<Order> {
         }
     }
 
-//    public static void main(String[] args) {
-//        OrderDBcontext dao = new OrderDBcontext();
-//       Order a = dao.getbyid(3);
-//        System.out.println(a);
-//
-//    }
+    public static void main(String[] args) {
+        OrderDBcontext dao = new OrderDBcontext();
+        ArrayList<Order> a = dao.listtotalmoneythang();
+        System.out.println(a);
+
+    }
+
+    public ArrayList<Order> listtotalmoneythang() {
+        ArrayList<Order> lists = new ArrayList<>();
+        try {
+            String sql = "select  top 1 \n"
+                    + "sum(totalmoney) as totalmoney\n"
+                    + "from [Order]\n"
+                    + "group by  datepart(mm,  [date]) order by datepart(mm,  [date]) DESC";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Order o = new Order();
+                o.setTotalmoney(rs.getDouble("totalmoney"));
+                lists.add(o);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDBcontext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lists;
+    }
 
     @Override
     public Order get(int id) {

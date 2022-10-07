@@ -41,11 +41,55 @@ public class OrderDetailDBcontext extends DBcontext<OrderDetail> {
         }
         return OrderDetails;
     }
+
     public static void main(String[] args) {
         OrderDetailDBcontext dao = new OrderDetailDBcontext();
         ArrayList<OrderDetail> a = dao.list();
         System.out.println(a);
 
+    }
+
+    public int count() {
+        ArrayList<OrderDetail> OrderDetails = new ArrayList<>();
+        try {
+            String sql = "select count(*) as total from OrderLine";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDetailDBcontext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+
+    public ArrayList<OrderDetail> pagesize(int pageindex, int pagesize) {
+        ArrayList<OrderDetail> OrderDetails = new ArrayList<>();
+        try {
+            String sql = "select p.name , o.quantity ,o.price , o.[status] from OrderLine o join  Product p on o.productID = p.productID\n"
+                    + "        ORDER BY o.oid\n"
+                    + "       OFFSET (?-1)*? ROWS \n"
+                    + "        FETCH NEXT ? ROWS ONLY";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, pageindex);
+            stm.setInt(2, pagesize);
+            stm.setInt(3, pagesize);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                OrderDetail o = new OrderDetail();
+                Product p = new Product();
+                o.setQuantity(rs.getInt("quantity"));
+                o.setPrice(rs.getDouble("price"));
+                o.setStatus(rs.getString("status"));
+                p.setName(rs.getString("name"));
+                o.setProduct(p);
+                OrderDetails.add(o);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDetailDBcontext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return OrderDetails;
     }
 
     @Override

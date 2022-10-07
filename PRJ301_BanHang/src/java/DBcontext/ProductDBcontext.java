@@ -4,11 +4,14 @@
  */
 package DBcontext;
 
+import Model.Brand;
+import Model.Category;
 import Model.Product;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +29,7 @@ public class ProductDBcontext extends DBcontext<Product> {
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                 Product p = new Product();
+                Product p = new Product();
                 p.setProductID(rs.getInt("productID"));
                 p.setName(rs.getString("name"));
                 p.setDescription(rs.getString("description"));
@@ -67,10 +70,6 @@ public class ProductDBcontext extends DBcontext<Product> {
 
     }
 
-    
-    
-    
-    
     public Product getproductbyid(int id) {
 
         try {
@@ -88,10 +87,85 @@ public class ProductDBcontext extends DBcontext<Product> {
         }
         return null;
     }
+
+    public ArrayList<Product> listProductbyid(int id) {
+        ArrayList<Product> products = new ArrayList<>();
+        String sql = "select [productID] , [name] ,[description], [img] ,[categoryID] , [brandID] ,[price] ,quantity  from Product  where 1 = 1 ";
+        if(id != 0 )
+        {
+            sql+=" and brandID="+id;
+        }
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("productID"));
+                p.setName(rs.getString("name"));
+                p.setDescription(rs.getString("description"));
+                p.setImg(rs.getString("img"));
+                Brand b = new Brand();
+                b.setBrandID(rs.getInt("brandID"));
+                p.setBrand(b);
+                p.setCategoryID(rs.getInt("categoryID"));
+                p.setPrice(rs.getFloat("price"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBcontext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+
+    }
     
-    public static void main(String[] args) {
+     public ArrayList<Product> searchproduct(String  key ,int id ,Double price1 ,Double price2) {
+        ArrayList<Product> products = new ArrayList<>();
+        String sql = "select [productID] , [name] ,[description], [img] ,[categoryID] , [brandID] ,[price] ,quantity  from Product  where 1 = 1 ";
+        if(key != null && !key.equals("") )
+        {
+            sql+="and name like '%"+key+"%' or description like '%"+key+"%' ";
+        }
+        if(price1!=null)
+        {
+            sql+=" and price>="+price1;
+        }
+        if(price2 != null )
+        {
+             sql+=" and price<="+price2;
+        }
+        if(id != 0 )
+        {
+            sql+=" and brandID="+id;
+        }
+        
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("productID"));
+                p.setName(rs.getString("name"));
+                p.setDescription(rs.getString("description"));
+                p.setImg(rs.getString("img"));
+                Brand b = new Brand();
+                b.setBrandID(rs.getInt("brandID"));
+                p.setBrand(b);
+                p.setCategoryID(rs.getInt("categoryID"));
+                p.setPrice(rs.getFloat("price"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBcontext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+
+    }
+
+    public void main(String[] args) {
         ProductDBcontext dao = new ProductDBcontext();
-        ArrayList<Product> a = dao.list();
+        List<Product> a = dao.list();
         System.out.println(a);
 
     }

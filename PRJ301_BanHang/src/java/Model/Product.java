@@ -9,15 +9,16 @@ package Model;
  * @author 84923
  */
 public class Product {
-   private int productID;
-    private String name,description,img;
-    private int categoryID,brandID,quantity;
-    private float price;
 
+    private int productID;
+    private String name, description, img;
+    private int categoryID, brandID, quantity;
+    private float price;
+    public Brand brand;
     public Product() {
     }
 
-    public Product(int productID, String name, String description, String img, String gb, String color, int categoryID, int brandID, int quantity, float price) {
+    public Product(int productID, String name, String description, String img, int categoryID, int brandID, int quantity, float price, Brand brand) {
         this.productID = productID;
         this.name = name;
         this.description = description;
@@ -26,6 +27,7 @@ public class Product {
         this.brandID = brandID;
         this.quantity = quantity;
         this.price = price;
+        this.brand = brand;
     }
 
     public int getProductID() {
@@ -60,7 +62,6 @@ public class Product {
         this.img = img;
     }
 
-
     public int getCategoryID() {
         return categoryID;
     }
@@ -93,11 +94,23 @@ public class Product {
         this.price = price;
     }
 
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
     @Override
     public String toString() {
-        return "Product{" + "productID=" + productID + ", name=" + name + ", description=" + description + ", img=" + img + ", categoryID=" + categoryID + ", brandID=" + brandID + ", quantity=" + quantity + ", price=" + price + '}';
+        return "Product{" + "productID=" + productID + ", name=" + name + ", description=" + description + ", img=" + img + ", categoryID=" + categoryID + ", brandID=" + brandID + ", quantity=" + quantity + ", price=" + price + ", brand=" + brand + '}';
     }
+
     
- 
+
     
+    
+    
+   
 }

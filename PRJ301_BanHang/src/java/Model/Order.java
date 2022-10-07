@@ -62,6 +62,11 @@ public class Order {
         this.totalmoney = totalmoney;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" + "id=" + id + ", date=" + date + ", accID=" + accID + ", totalmoney=" + totalmoney + '}';
+    }
+
  
     
 }

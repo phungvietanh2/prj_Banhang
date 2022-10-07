@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <servlet>
-        <servlet-name>ProductController</servlet-name>
-        <servlet-class>UseController.ProductController</servlet-class>
-    </servlet>
+    <context-param>
+        <param-name>
+           pagesize 
+        </param-name>
+        <param-value>
+            10
+        </param-value>
+    </context-param>
     <servlet>
         <servlet-name>InforProductController</servlet-name>
         <servlet-class>UseController.InforProductController</servlet-class>
@@ -48,10 +52,10 @@
         <servlet-name>StatusController</servlet-name>
         <servlet-class>AdminController.StatusController</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ProductController</servlet-name>
-        <url-pattern>/Product</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>DienThoaiController</servlet-name>
+        <servlet-class>UseController.DienThoaiController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InforProductController</servlet-name>
         <url-pattern>/Information</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>StatusController</servlet-name>
         <url-pattern>/Status</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DienThoaiController</servlet-name>
+        <url-pattern>/DienThoai</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,15 +10,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
+
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/cart1.css" rel="stylesheet" type="text/css"/>
         <script src="js/cart1.js" type="text/javascript"></script>
         <title>JSP Page</title>
@@ -40,10 +37,13 @@
                     <p ><span>Total</span> <span><fmt:formatNumber pattern="##.##" value="${o.totalMoney}" /></span></p>
 
                     <form action="Checkout" method="post">
-                       <i class="fa fa-shopping-cart"></i> <input  type="submit" value="Checkout">
-                            
-                        
-
+                        <i class="fa fa-shopping-cart"></i> 
+                        <input  style="    height: 3rem;
+                               background-color: red;
+                               width: 8rem;
+                               border-radius: 10px;
+                               color: white; "  
+                               type="submit" value="Checkout">
                     </form>   
                 </div>
 
@@ -52,7 +52,7 @@
         <div style="padding-top: 10rem"></div>
         <c:forEach items="${o.items}" var="c">
             <c:set var="tt" value="${tt+1}" />
-            <div  class="wrapper" >
+            <div style="font-size: 2rem; transition: none" class="wrapper" >
                 <div class="project">
 
                     <div  class="shop">
@@ -69,7 +69,7 @@
                                 <form action="process" method="post">
                                     <input type="hidden" name="id" value="${c.product.productID}">
                                     <p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> 
-                                        <span class="btn2"><input style="background: none" type="submit" value="Remove" ></span></p>
+                                        <span class="btn2"><input style="background: none ; color: white" type="submit" value="Remove" ></span></p>
 
 
                                 </form>
