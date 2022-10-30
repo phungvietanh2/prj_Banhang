@@ -12,11 +12,11 @@ public class Account {
     private int accID;
     private String email,phone,fullname,username,password;
     private boolean isAdmin,isCustomer;
-
+    private  Information information;
     public Account() {
     }
 
-    public Account(int accID, String email, String phone, String fullname, String username, String password, boolean isAdmin, boolean isCustomer) {
+    public Account(int accID, String email, String phone, String fullname, String username, String password, boolean isAdmin, boolean isCustomer, Information information) {
         this.accID = accID;
         this.email = email;
         this.phone = phone;
@@ -25,6 +25,7 @@ public class Account {
         this.password = password;
         this.isAdmin = isAdmin;
         this.isCustomer = isCustomer;
+        this.information = information;
     }
 
     public int getAccID() {
@@ -91,10 +92,18 @@ public class Account {
         this.isCustomer = isCustomer;
     }
 
+    public Information getInformation() {
+        return information;
+    }
+
+    public void setInformation(Information information) {
+        this.information = information;
+    }
+
     @Override
     public String toString() {
-        return "Account{" + "accID=" + accID + ", email=" + email + ", phone=" + phone + ", fullname=" + fullname + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin + ", isCustomer=" + isCustomer + '}';
+        return "Account{" + "accID=" + accID + ", email=" + email + ", phone=" + phone + ", fullname=" + fullname + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin + ", isCustomer=" + isCustomer + ", information=" + information + '}';
     }
-    
+
     
 }

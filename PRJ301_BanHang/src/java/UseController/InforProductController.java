@@ -47,7 +47,10 @@ public class InforProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.setAttribute("Productinformation", prodb.list());
+        String key_raw = request.getParameter("productID");
+        
+        request.setAttribute("Productinformation", prodb.getidproduct(key_raw));
+        System.out.println(prodb.getidproduct(key_raw));
         request.getRequestDispatcher("use/Product information.jsp").forward(request, response);
     } 
 

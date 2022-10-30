@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author 84923
@@ -14,11 +16,13 @@ public class Product {
     private String name, description, img;
     private int categoryID, brandID, quantity;
     private float price;
-    public Brand brand;
+    private Date date;
+    private Brand brand;
+    private OrderDetail orderDetail;
     public Product() {
     }
 
-    public Product(int productID, String name, String description, String img, int categoryID, int brandID, int quantity, float price, Brand brand) {
+    public Product(int productID, String name, String description, String img, int categoryID, int brandID, int quantity, float price, Date date, Brand brand, OrderDetail orderDetail) {
         this.productID = productID;
         this.name = name;
         this.description = description;
@@ -27,7 +31,9 @@ public class Product {
         this.brandID = brandID;
         this.quantity = quantity;
         this.price = price;
+        this.date = date;
         this.brand = brand;
+        this.orderDetail = orderDetail;
     }
 
     public int getProductID() {
@@ -94,6 +100,14 @@ public class Product {
         this.price = price;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public Brand getBrand() {
         return brand;
     }
@@ -102,11 +116,22 @@ public class Product {
         this.brand = brand;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" + "productID=" + productID + ", name=" + name + ", description=" + description + ", img=" + img + ", categoryID=" + categoryID + ", brandID=" + brandID + ", quantity=" + quantity + ", price=" + price + ", brand=" + brand + '}';
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
     }
 
+    public void setOrderDetail(OrderDetail orderDetail) {
+        this.orderDetail = orderDetail;
+    }
+
+    
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    
     
 
     

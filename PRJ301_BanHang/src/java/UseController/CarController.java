@@ -69,7 +69,6 @@ public class CarController extends HttpServlet {
        
         Cart cart = new Cart(txt, list);
         request.setAttribute("cart", cart);
-         System.out.println(cart);
         request.getRequestDispatcher("use/Cart.jsp").forward(request, response);
     }
 

@@ -87,7 +87,7 @@ public class BuyproductController extends HttpServlet {
 
         String num = request.getParameter("num");
         String id = request.getParameter("id");
-
+ 
         if (txt.isEmpty()) {
             txt =id+":"+num;
         } else {

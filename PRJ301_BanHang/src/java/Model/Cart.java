@@ -61,7 +61,7 @@ public class Cart {
         return total;
     }
      public String getstatus() {
-        String status = "In Progress";
+        String status = "0";
         return status;
     }
 
@@ -94,7 +94,8 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart{" + "items=" + items + '}';
+        return "san pham : "+ items +"\n"+ "SUM : " + this.getTotalMoney();
     }
+    
     
 }

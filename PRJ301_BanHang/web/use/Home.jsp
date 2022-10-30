@@ -13,32 +13,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Complete Responsive Food Website Design Tutorial</title>
-
-
-
-
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
         <!-- font awesome cdn link  -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
         <!-- custom css file link  -->
         <link rel="stylesheet" href="css/style.css">
-
         <link href="css/Home.css" rel="stylesheet" type="text/css"/>
     </head>
-
     <body>
-
         <jsp:include page="../use/Menu.jsp"></jsp:include>
-
-            <form action="" id="search-form">
-                <input type="search" placeholder="search here..." name="" id="search-box">
-                <label for="search-box" class="fas fa-search"></label>
-                <i class="fas fa-times" id="close"></i>
-            </form>
-
-            <!-- home section starts  -->
 
             <section class="home" id="home">
 
@@ -92,12 +75,12 @@
                 <input type="hidden" type="number"  name="num" value="1" >
                 <section class="dishes" id="dienthoai">
                     <h1 class="heading"> ĐIỆN THOẠI </h1>
-                    <div class="box-container">
+                    <div id="content" class="box-container">
                     <c:forEach items="${requestScope.productdt}"  var="c" >
                         <c:set var="id" value="${c.productID}" />  
-                        <div class="box">
+                        <div class="product1 box ">
                             <div class="image">            
-                                <a href="Information?productID${c.productID} class="fas fa-heart">
+                                <a href="Information?productID=${c.productID} & class="fas fa-heart">
                                     <img src="img/iphone/${c.img}" alt="">
                                 </a>
                             </div>
@@ -116,20 +99,21 @@
                         </div>
                     </c:forEach>
                 </div>
+               
             </section>
 
 
 
-            <section class="dishes" id="laptop">
+            <section class="dishes" id="tablet">
                 <h1 class="heading"> TABLE </h1>
 
                 <div class="box-container">
-                    <c:forEach items="${requestScope.product}"  var="c" >
+                    <c:forEach items="${requestScope.productipad}"  var="d" >
                         <div class="box">
                             <div class="image">            
-                                <a href="Information?productID${c.productID} class="fas fa-heart">
+                                <a href="Information?productID=${d.productID} & class="fas fa-heart">
 
-                                    <img src="img/iphone/${c.img}" alt="">
+                                    <img src="img/iphone/${d.img}" alt="">
                                 </a>
                             </div>
                             <div class="content">
@@ -140,23 +124,23 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star-half-alt"></i>
                                 </div>
-                                <h3>${c.name}</h3>
+                                <h3>${d.name}</h3>
                                 <input type="button" class="btn" onclick="buy('${id}')" value="add to cart">
-                                <span class="price">$${c.price}</span>
+                                <span class="price">$${d.price}</span>
                             </div>
                         </div>
                     </c:forEach>
 
                 </div>
             </section>
-            <section class="review" id="dongho">
+            <section class="review" id="laptop">
                 <section class="dishes" >
                     <h1 class="heading"> LAPTOP </h1>
                     <div class="box-container">
-                        <c:forEach items="${requestScope.product}"  var="c" >
+                        <c:forEach items="${requestScope.productlaptop}"  var="c" >
                             <div class="box">
                                 <div class="image">            
-                                    <a href="Information?productID${c.productID} class="fas fa-heart">
+                                    <a href="Information?productID=${c.productID} & class="fas fa-heart">
 
                                         <img src="img/iphone/${c.img}" alt="">
                                     </a>
@@ -196,12 +180,41 @@
         <!-- custom js file link  -->
         <script src="js/Home.js" type="text/javascript"></script>
         <script>
-                                    function buy(id) {
-                                        var m = document.f.num.value;
-                                        document.f.action = "buy?id=" + id + "&num=" + m;
-                                        document.f.submit();
-                                    }
+                                        function buy(id) {
+                                            var m = document.f.num.value;
+                                            document.f.action = "buy?id=" + id + "&num=" + m;
+                                            document.f.submit();
+                                        }
 
         </script>
+        <style>
+            #loadMore {
+                width: 200px;
+                color: #fff;
+                display: block;
+                text-align: center;
+                margin: 20px auto;
+                padding: 10px;
+                border-radius: 10px;
+                border: 1px solid transparent;
+                background-color: blue;
+                transition: .3s;
+            }
+            #loadMore:hover {
+                color: blue;
+                background-color: #fff;
+                border: 1px solid blue;
+                text-decoration: none;
+            }
+            .noContent {
+                color: #000 !important;
+                background-color: transparent !important;
+                pointer-events: none;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+       
     </body>
 </html>

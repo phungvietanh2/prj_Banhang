@@ -34,7 +34,7 @@
                     <hr>
                     <p><span>Shipping</span> <span>$15</span></p>
                     <hr>
-                    <p ><span>Total</span> <span><fmt:formatNumber pattern="##.##" value="${o.totalMoney}" /></span></p>
+                    <p ><span>Total:  $</span> <span><fmt:formatNumber pattern="##.##" value="${o.totalMoney}" /></span></p>
 
                     <form action="Checkout" method="post">
                         <i class="fa fa-shopping-cart"></i> 

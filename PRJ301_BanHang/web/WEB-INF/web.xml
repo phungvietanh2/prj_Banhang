@@ -2,12 +2,58 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <context-param>
         <param-name>
-           pagesize 
+            pagesize 
         </param-name>
         <param-value>
-            10
+            8
         </param-value>
     </context-param>
+    <!--filter Home-->
+    <filter>
+        <filter-name>HomeFilter</filter-name>
+        <filter-class>Filter.HomeFilter</filter-class>
+    </filter>
+    <!--filter check Homelogin-->
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>Filter.LoginFilter</filter-class>
+    </filter>
+    <!--filter check role-->
+    <filter>
+        <filter-name>RoleFilter</filter-name>
+        <filter-class>Filter.RoleFilter</filter-class>
+    </filter>
+    <!--filter check count-->
+    <filter>
+        <filter-name>CountFilter</filter-name>
+        <filter-class>Filter.CountFilter</filter-class>
+        <init-param>
+            <param-name>
+                count 
+            </param-name>
+            <param-value>
+                0
+            </param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/Admin</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CountFilter</filter-name>
+        <url-pattern>/Home</url-pattern>
+        <url-pattern>/Product</url-pattern>
+        <url-pattern>/search</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>RoleFilter</filter-name>
+        <url-pattern>/Admin</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>HomeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>InforProductController</servlet-name>
         <servlet-class>UseController.InforProductController</servlet-class>
@@ -30,11 +76,11 @@
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>Acount.LoginController</servlet-class>
+        <servlet-class>AcountController.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>Acount.LogoutController</servlet-class>
+        <servlet-class>AcountController.LogoutController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Home</servlet-name>
@@ -54,7 +100,63 @@
     </servlet>
     <servlet>
         <servlet-name>DienThoaiController</servlet-name>
-        <servlet-class>UseController.DienThoaiController</servlet-class>
+        <servlet-class>UseController.ProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchDBcontext</servlet-name>
+        <servlet-class>AdminController.SearchController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Viewacc</servlet-name>
+        <servlet-class>AdminController.Viewacc</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddproductController</servlet-name>
+        <servlet-class>AdminController.AddproductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteproductColler</servlet-name>
+        <servlet-class>AdminController.DeleteproductColler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OredrController</servlet-name>
+        <servlet-class>AdminController.OredrController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllstatsController</servlet-name>
+        <servlet-class>AdminController.AllstatsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>UseController.SearchController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchUseController</servlet-name>
+        <servlet-class>Ajax.SearchUseController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadController</servlet-name>
+        <servlet-class>Ajax.LoadController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ErrController</servlet-name>
+        <servlet-class>UseController.ErrController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductContronller</servlet-name>
+        <servlet-class>Ajax.ProductContronller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignUpController</servlet-name>
+        <servlet-class>AcountController.SignUpController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccountController</servlet-name>
+        <servlet-class>AcountController.DeleteAccountController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Addproduct1Controller</servlet-name>
+        <servlet-class>AdminController.Addproduct1Controller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>InforProductController</servlet-name>
@@ -102,7 +204,63 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DienThoaiController</servlet-name>
-        <url-pattern>/DienThoai</url-pattern>
+        <url-pattern>/Product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchDBcontext</servlet-name>
+        <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Viewacc</servlet-name>
+        <url-pattern>/updateaccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddproductController</servlet-name>
+        <url-pattern>/Addproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteproductColler</servlet-name>
+        <url-pattern>/Deleteproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OredrController</servlet-name>
+        <url-pattern>/Oredrdetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllstatsController</servlet-name>
+        <url-pattern>/Allstats</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchUseController</servlet-name>
+        <url-pattern>/SearchUse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadController</servlet-name>
+        <url-pattern>/Load</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ErrController</servlet-name>
+        <url-pattern>/Err</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductContronller</servlet-name>
+        <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpController</servlet-name>
+        <url-pattern>/SignUp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountController</servlet-name>
+        <url-pattern>/DeleteAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Addproduct1Controller</servlet-name>
+        <url-pattern>/Addproduct1</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -50,7 +50,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" + "product=" + product + ", quantity=" + quantity + ", price=" + price + '}';
+        return  product + ", quantity=" + quantity + ", price=" + (double)Math.floor(price*100)/100 ;
     }
     
     

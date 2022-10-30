@@ -4,11 +4,18 @@
         <servlet-name>ShopServlet</servlet-name>
         <servlet-class>demo.ShopServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>gmailsend</servlet-name>
+        <servlet-class>gmailsend</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmailSendingServlet</servlet-name>
+        <servlet-class>EmailSendingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShopServlet</servlet-name>
         <url-pattern>/shop</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>BuyServlet</servlet-name>
         <servlet-class>demo.BuyServlet</servlet-class>
@@ -17,7 +24,6 @@
         <servlet-name>BuyServlet</servlet-name>
         <url-pattern>/buy</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>ShowServlet</servlet-name>
         <servlet-class>demo.ShowServlet</servlet-class>
@@ -26,7 +32,6 @@
         <servlet-name>ShowServlet</servlet-name>
         <url-pattern>/show</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>process</servlet-name>
         <servlet-class>demo.process</servlet-class>
@@ -35,7 +40,19 @@
         <servlet-name>BuyServlet</servlet-name>
         <url-pattern>/process</url-pattern>
     </servlet-mapping>
-    
+    <dependency>
+        <groupId>com.sun.mail</groupId>
+        <artifactId>jakarta.mail</artifactId>
+        <version>2.0.1</version>
+    </dependency>
+    <servlet-mapping>
+        <servlet-name>gmailsend</servlet-name>
+        <url-pattern>/gmail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmailSendingServlet</servlet-name>
+        <url-pattern>/EmailSendingServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -29,9 +29,9 @@ public abstract class DBcontext<T> {
             Logger.getLogger(DBcontext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public abstract ArrayList<T> list();
-    public abstract T get(int id);
-    public abstract void insert(T model);
-    public abstract void update(T model);
-    public abstract void delete(T model);
+        public abstract ArrayList<T> list();
+        public abstract T get(int id);
+        public abstract void insert(T model);
+        public abstract void update(T model);
+        public abstract void delete(T model);
 }

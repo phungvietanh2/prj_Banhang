@@ -1,337 +1,248 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.io.*,java.util.*" %>
+<%@ page import="javax.servlet.*,java.text.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/homeadmin.css" rel="stylesheet" type="text/css"/>
-        <script src="js/Home.js" type="text/javascript"></script>
+        <link href="css/Homeadmin1.css" rel="stylesheet" type="text/css"/>
+        <script src="js/adminhome.js" type="text/javascript"></script>
     </head>
     <body>
-        <div id="top_pagger" class="pagger"> </div>
-        <!-- =============== Navigation ================ -->
-        <div class="container">
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="#">
-                            <span class="icon">
-                                <ion-icon name="logo-apple"></ion-icon>
-                            </span>
-                            <span class="title">Brand Name</span>
-                        </a>
-                    </li>
+        <!--          <%
+            Date dNow = new Date( );
+           SimpleDateFormat ft = new SimpleDateFormat ("yyyy");
+           SimpleDateFormat ft1 = new SimpleDateFormat ("MM");
+        %>
+     
+        <c:set  var="nam1" value="<%=ft.format(dNow)%>"></c:set>
+        <c:set var="thang1" value="<%=ft1.format(dNow)%>"></c:set>
+            -->
+            <nav class="topnav">
+                <div class="logo">
+                    <a href="#" class="display-sm display-md" id="menu"><i class="fa fa-list-ul"></i></a>
+                    <a href="Admin" class="hidden-sm"><h1>APPLE</h1></a>
+                </div>
+                <div class="user-menu">
+                    <form action="#" method="post" class="hidden-sm">
+                        <input type="text" name="search" id="search" placeholder="Procurar...">
+                        <i class="fa fa-search"></i>
+                    </form>
+                    <div>
+                    <c:if test="${sessionScope.account == null}">
+                        <a href="Login"><i class="fa fa-power-off"></i></a>
+                        </c:if>
+                        <c:if test="${sessionScope.account != null}">
+                        <a href="#"><i class="fa fa-user"></i> Hello ${sessionScope.account.username}</a>
+                        <a href="Logout"><i class="fa fa-power-off"></i></a>
+                        </c:if>
 
-                    <li>
-                        <a href="#">
-                            <span class="icon">
-                                <ion-icon name="home-outline"></ion-icon>
-                            </span>
-                            <span class="title">Dashboard</span>
-                        </a>
-                    </li>
+                </div>
+            </div>
+        </nav>
 
-                    <li>
-                        <a href="#">
-                            <span class="icon">
-                                <ion-icon name="people-outline"></ion-icon>
-                            </span>
-                            <span class="title">Customers</span>
-                        </a>
-                    </li>
+        <aside class="sidenav hidden-sm hidden-md" id="nav">
+            <div class="list">
+                <a href="Admin"  class="active"><i class="fa fa-home"></i>Home</a>
+                <a href="Status"><i class="fa fa-users"></i>Stats</a>
+                <a href="Oredrdetails"><i class="fa fa-users"></i>Order</a>
+                <a href="Addproduct" ><i class="fa fa-edit"></i>Add product</a>
+                <a href="Search"><i class="fa fa-wrench"></i>Search</a>
 
-                    <li>
-                        <a href="#">
-                            <span class="icon">
-                                <ion-icon name="chatbubble-outline"></ion-icon>
-                            </span>
-                            <span class="title">Messages</span>
-                        </a>
-                    </li>
+            </div>
+        </aside>
 
-                    <li>
-                        <a href="#">
-                            <span class="icon">
-                                <ion-icon name="help-outline"></ion-icon>
-                            </span>
-                            <span class="title">Help</span>
-                        </a>
-                    </li>
+        <main class="content">
+            <div class="grid">
+                <c:forEach items="${requestScope.o1}" var="a"> 
+                    <div class="mini-reports bg-blue">
+                        <div class="l">
+                            <span> $<fmt:formatNumber pattern="##.##" value="${a.totalmoney}" /></span>
+                            <span>Earning</span>
+                        </div>
+                        <div class="r">
+                            <i class="fa fa-dollar c-blue"></i>
 
-                    <li>
-                        <a href="#">
-                            <span class="icon">
-                                <ion-icon name="settings-outline"></ion-icon>
-                            </span>
-                            <span class="title">Settings</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <span class="icon">
-                                <ion-icon name="lock-closed-outline"></ion-icon>
-                            </span>
-                            <span class="title">Password</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <span class="icon">
-                                <ion-icon name="log-out-outline"></ion-icon>
-                            </span>
-                            <span class="title">Sign Out</span>
-                        </a>
-                    </li>
-                </ul>
+                        </div>
+                    </div>
+                </c:forEach>
+                <div class="mini-reports bg-green">
+                    <div class="l">
+                        <span>${sessionScope.c}</span>  
+                        <span>Home</span>
+                    </div>
+                    <div class="r">
+                        <i class="fa fa-home c-green"></i>
+                    </div>
+                </div>
+                <div class="mini-reports bg-orange">
+                    <div class="l">
+                        <span>100</span>
+                        <span>usuário</span>
+                    </div>
+                    <div class="r">
+                        <i class="fa fa-users c-orange"></i>
+                    </div>
+                </div>
+                <div class="mini-reports bg-red">
+                    <div class="l">
+                        <span>50</span>
+                        <span>Online</span>
+                    </div>
+                    <div class="r">
+                        <i class="fa fa-user c-red"></i>
+                    </div>
+                </div>
             </div>
 
-            <!-- ========================= Main ==================== -->
-            <div class="main">
-                <div class="topbar">
-                    <div class="toggle">
-                        <ion-icon name="menu-outline"></ion-icon>
+            <div class="grid">
+                <div class="painel">
+                    <div class="painel-header">
+                        <h4 class="painel-title">Account</h4>
+
                     </div>
-
-                    <div class="search">
-                        <label>
-                            <input type="text" placeholder="Search here">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </label>
-                    </div>
-
-                    <div class="user">
-                        <img src="assets/imgs/customer01.jpg" alt="">
-                    </div>
-                </div>
-
-                <!-- ======================= Cards ================== -->
-                <div class="cardBox">
-                    <div class="card">
-                        <div>
-                            <div class="numbers">1,504</div>
-                            <div class="cardName">Daily Views</div>
-                        </div>
-
-                        <div class="iconBx">
-                            <ion-icon name="eye-outline"></ion-icon>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div>
-                            <div class="numbers">80</div>
-                            <div class="cardName">Sales</div>
-                        </div>
-
-                        <div class="iconBx">
-                            <ion-icon name="cart-outline"></ion-icon>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div>
-                            <div class="numbers">284</div>
-                            <div class="cardName">Comments</div>
-                        </div>
-
-                        <div class="iconBx">
-                            <ion-icon name="chatbubbles-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <c:forEach items="${requestScope.o1}" var="a"> 
-                        <div class="card">
-                            <div>
-                                <div class="numbers">
-                                    $<fmt:formatNumber pattern="##.##" value="${a.totalmoney}" />
-                                </div>
-                                <div class="cardName">Earning</div>
-                            </div>
-
-                            <div class="iconBx">
-                                <ion-icon name="cash-outline"></ion-icon>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </div>
-
-                <!-- ================ Order Details List ================= -->
-                <div class="details">
-                    <div class="recentOrders">
-                        <div class="cardHeader">
-                            <h2>Recent Orders</h2>
-                            <a href="#" class="btn">View All</a>
-                        </div>
-
-                        <table>
-                            <thead>
+                    <div class="painel-body">
+                        <div class="alert alert-success">User Information</div>
+                        <table class="zebra">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Join</th>
+                                <th>Actions</th>
+                            </tr>
+                            <c:forEach items="${requestScope.acc}" var="c"> 
                                 <tr>
-                                    <td>Name</td>
-                                    <td>Price</td>
-                                    <td>Quantity</td>
-                                    <td>Status</td>
+                                    <td>${c.fullname}</td>
+                                    <td>${c.email}</td>
+                                    <td>${c.information.dob}</td>
+                                    <td>
+                                        <a  onclick="removeEmp(${c.accID})" class="btn btn-red"><i class="fa fa-trash"></i></a>
+                                        <a href="updateaccount?id=${c.accID}" class="btn btn-orange"><i class="fa fa-edit"></i></a>
+                                    </td>
                                 </tr>
-                            </thead>
-
-                            <tbody>
-                                <c:forEach items="${requestScope.o}" var="c">
-                                    <tr>
-                                        <td>${c.product.name}</td>
-                                        <td>$ <fmt:formatNumber pattern="##.##" value="${c.price}" /></td>
-                                        <td>${c.quantity}</td>
-                                        <td><span class="status delivered">${c.status}</span></td>
-                                    </tr>
-                                </c:forEach>
-                            <div id="bot_pagger" class="pagger"></div>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- ================= New Customers ================ -->
-                    <div class="recentCustomers">
-                        <div class="cardHeader">
-                            <h2>Recent Customers</h2>
-                        </div>
-
-                        <table>
-                            <tr>
-                                <td width="60px">
-                                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                                </td>
-                                <td>
-                                    <h4>David <br> <span>Italy</span></h4>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td width="60px">
-                                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                                </td>
-                                <td>
-                                    <h4>Amit <br> <span>India</span></h4>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td width="60px">
-                                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                                </td>
-                                <td>
-                                    <h4>David <br> <span>Italy</span></h4>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td width="60px">
-                                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                                </td>
-                                <td>
-                                    <h4>Amit <br> <span>India</span></h4>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td width="60px">
-                                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                                </td>
-                                <td>
-                                    <h4>David <br> <span>Italy</span></h4>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td width="60px">
-                                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                                </td>
-                                <td>
-                                    <h4>Amit <br> <span>India</span></h4>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td width="60px">
-                                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                                </td>
-                                <td>
-                                    <h4>David <br> <span>Italy</span></h4>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td width="60px">
-                                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                                </td>
-                                <td>
-                                    <h4>Amit <br> <span>India</span></h4>
-                                </td>
-                            </tr>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>
+
+                <div class="painel">
+                    <div class="painel-header">
+                        <h4 class="painel-title">Order Details List</h4>
+                    </div>
+                    <div class="painel-body">
+
+                        <table class="table">
+                            <tr>
+                                <th class="table__heading">user name</th>
+                                <th class="table__heading">date</th>
+                                <th class="table__heading">status</th>
+                                <th class="table__heading">total money</th>                             
+                            </tr>
+                            <c:forEach items="${requestScope.o2}" var="c">
+                                <tr>
+                                    <td>${c.account.username}</td>
+                                    <td>${c.date}</td>
+                                    <td>$ <fmt:formatNumber pattern="##.##" value="${c.totalmoney}" /></td>
+                                    <td>
+                                        <c:if test="${c.status == '-1'}">
+                                            <h3 style="color: red">Reject</h3>
+                                        </c:if>
+                                        <c:if test="${c.status == '1'}">
+                                            <h3 style="color: springgreen">Approved </h3>
+                                        </c:if>
+                                        <c:if test="${c.status == '0'}">
+                                            <h3 style="color: red">Uprocessed</h3>
+                                        </c:if>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+
+                        <div  id="bot_pagger" class="pagger">
+
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
-        </div>
 
-        <!-- =========== Scripts =========  -->
-        <script src="assets/js/main.js"></script>
 
-        <!-- ====== ionicons ======= -->
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        </main>
         <script>
-            // add hovered class to selected list item
-            let list = document.querySelectorAll(".navigation li");
-
-            function activeLink() {
-                list.forEach((item) => {
-                    item.classList.remove("hovered");
-                });
-                this.classList.add("hovered");
-            }
-
-            list.forEach((item) => item.addEventListener("mouseover", activeLink));
-
-            // Menu Toggle
-            let toggle = document.querySelector(".toggle");
-            let navigation = document.querySelector(".navigation");
-            let main = document.querySelector(".main");
-
-            toggle.onclick = function () {
-                navigation.classList.toggle("active");
-                main.classList.toggle("active");
-            };
-            render("top_pagger",${requestScope.pageindex},${requestScope.totalpage}, 2);
             render("bot_pagger",${requestScope.pageindex},${requestScope.totalpage}, 2);
-            function render(id, pageindex, totalpage, gap)
-            {
-                var container = document.getElementById(id);
-                var content = "";
-                if (pageindex > gap + 1)
-                    content += "<a href='Admin?page=1'>First</a>";
+        </script>
+        <script>
+            const menu = document.getElementById('menu');
+            const nav = document.getElementById('nav');
 
-                for (var i = pageindex - gap; i < pageindex; i++)
-                {
-                    if (i > 0)
-                        content += "<a href='Admin?page=" + i + "'>" + i + "</a>";
-                }
-
-                content += "<span>" + pageindex + "</span>";
-
-                for (var i = pageindex + 1; i <= pageindex + gap; i++)
-                {
-                    if (i <= totalpage)
-                        content += "<a href='Admin?page=" + i + "'>" + i + "</a>";
-                }
-
-                if (pageindex < totalpage - gap)
-                    content += "<a href='Admin?page=" + totalpage + "'>Last</a>";
-                container.innerHTML = content;
-            }
+            menu.addEventListener('click', function () {
+                nav.classList.toggle('visible');
+            });
+            //phan trang
 
         </script>
+        <script>
+            function removeEmp(id)
+            {
+                var result = confirm("are you sure?");
+                if (result)
+                {
+                    window.location.href = "DeleteAccount?id=" + id;
+                }
+            }
+        </script>
     </body>
+    <style>
+        .pagger {
+            display: inline-block;
+            margin-top: 10px;
 
+        }
+
+        .pagger a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+        }
+
+        .pagger a.active {
+            background-color: #4CAF50;
+            color: white;
+            border: 1px solid #4CAF50;
+        }
+
+        .pagger a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+        .pagger a:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .pagger a:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    </style>
 </html>
+
+
+
+
+
+
+
+
+
+

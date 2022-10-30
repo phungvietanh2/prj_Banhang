@@ -12,37 +12,17 @@ public class OrderDetail {
 
     private int oid, productID, quantity;
     private double price;
-    private String status;
     private Product product;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(int oid, int productID, int quantity, double price, String status, Product product) {
+    public OrderDetail(int oid, int productID, int quantity, double price, Product product) {
         this.oid = oid;
         this.productID = productID;
         this.quantity = quantity;
         this.price = price;
-        this.status = status;
         this.product = product;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public int getOid() {
@@ -56,7 +36,7 @@ public class OrderDetail {
     public int getProductID() {
         return productID;
     }
-     
+
     public void setProductID(int productID) {
         this.productID = productID;
     }
@@ -77,9 +57,17 @@ public class OrderDetail {
         this.price = price;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     @Override
     public String toString() {
-        return "OrderDetail{" + "oid=" + oid + ", productID=" + productID + ", quantity=" + quantity + ", price=" + price + ", status=" + status + ", product=" + product + '}';
+        return "OrderDetail{" + "oid=" + oid + ", productID=" + productID + ", quantity=" + quantity + ", price=" + price + ", product=" + product + '}';
     }
 
 }

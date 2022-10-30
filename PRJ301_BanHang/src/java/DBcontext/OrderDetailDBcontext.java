@@ -21,25 +21,7 @@ public class OrderDetailDBcontext extends DBcontext<OrderDetail> {
 
     @Override
     public ArrayList<OrderDetail> list() {
-        ArrayList<OrderDetail> OrderDetails = new ArrayList<>();
-        try {
-            String sql = "select p.name , o.quantity ,o.price , o.[status] from OrderLine o join  Product p on o.productID = p.productID";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                OrderDetail o = new OrderDetail();
-                Product p = new Product();
-                o.setQuantity(rs.getInt("quantity"));
-                o.setPrice(rs.getDouble("price"));
-                o.setStatus(rs.getString("status"));
-                p.setName(rs.getString("name"));
-                o.setProduct(p);
-                OrderDetails.add(o);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(OrderDetailDBcontext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return OrderDetails;
+        return null;
     }
 
     public static void main(String[] args) {
@@ -81,7 +63,7 @@ public class OrderDetailDBcontext extends DBcontext<OrderDetail> {
                 Product p = new Product();
                 o.setQuantity(rs.getInt("quantity"));
                 o.setPrice(rs.getDouble("price"));
-                o.setStatus(rs.getString("status"));
+               
                 p.setName(rs.getString("name"));
                 o.setProduct(p);
                 OrderDetails.add(o);

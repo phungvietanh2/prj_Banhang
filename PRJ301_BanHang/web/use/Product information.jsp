@@ -23,8 +23,9 @@
     </head>
     <body >
         <jsp:include  page="../use/Menu.jsp"></jsp:include>
+
+        <c:forEach items="${requestScope.Productinformation}" var="c">
             <main role="main">
-            <c:forEach items="${requestScope.Productinformation}" var="c"></c:forEach>
                 <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
                 <div class="container mt-4">
                     <div id="thongbao" class="alert alert-danger d-none face" role="alert">
@@ -47,13 +48,13 @@
                                         <div class="preview-pic tab-content">
 
 
-                                            <img  src="img/iphone/13pro.png">    
+                                            <img  src="img/iphone/${c.img}">    
 
                                         </div>
 
                                     </div>
                                     <div class="details col-md-6">
-                                        <h3 class="product-title">Samsung Galaxy Tab 10.1 3G 16G</h3>
+                                        <h3 class="product-title">${c.name}</h3>
                                         <div class="rating">
                                             <div class="stars">
                                                 <span class="fa fa-star checked"></span>
@@ -65,7 +66,7 @@
                                             <span class="review-no">999 reviews</span>
                                         </div>
                                         <p class="product-description">Màn hình 10.1 inch cảm ứng đa điểm</p>
-                                        <h4 class="price">Giá hiện tại: <span>10,990,000.00 vnđ</span></h4>
+                                        <h4 class="price">Giá hiện tại: <span>$${c.price}</span></h4>
                                         <div class="form-group">
                                             <label for="soluong">Số lượng đặt mua:</label>
                                             <input type="number" class="form-control" id="soluong" name="soluong">
@@ -86,7 +87,7 @@
                             <h3>Thông tin chi tiết về Sản phẩm</h3>
                             <div class="row">
                                 <div class="col">
-                                    Vi xử lý Dual-core 1 Cortex-A9 tốc độ 1GHz
+                                    ${c.description}
                                 </div>
                             </div>
                         </div>
@@ -94,6 +95,7 @@
                 </div>
                 <!-- End block content -->
             </main>
+        </c:forEach>
         <jsp:include page="../use/Footer.jsp"></jsp:include>
         <script src="../vendor/jquery/jquery.min.js"></script>
         <script src="../vendor/popperjs/popper.min.js"></script>
